@@ -1,0 +1,341 @@
+@import './config';
+
+// PRELOADER
+#preloader {
+	width: 100vw;
+	height: 100vh;
+	right: 0;
+	top: 0;
+	position: fixed;
+	display: grid;
+	z-index: 10;
+	place-content: center;
+	background: radial-gradient(#13173a, #121634, #131735);
+	& > div {
+		transform: scale(1.8);
+	}
+}
+/**  Dot Windmill Preloader **/
+@include preloader;
+
+// HEADER
+header {
+	position: relative;
+	.site-nav {
+		top: 0;
+		width: 100%;
+		padding: 10px 20px;
+		position: absolute;
+		z-index: 2;
+		border-bottom: 1px solid #444;
+		@include flex(space-between);
+		.brand {
+			color: #fff;
+		}
+		.site-menu {
+			@include flex(space-between);
+			display: none;
+			li {
+				padding: 10px;
+				a {
+					color: #fff;
+					letter-spacing: 0.6px;
+					font: {
+						size: 18px;
+						weight: bold;
+					}
+				}
+			}
+			@include pc {
+				display: flex;
+			}
+		}
+		#toggleBtn {
+			color: #fff;
+			cursor: pointer;
+			@include toggleBtn;
+			&.close .line {
+				display: none;
+				width: 40px;
+				margin: 0;
+				position: relative;
+				&:nth-child(1) {
+					display: block;
+					transform: rotate(45deg);
+				}
+				&:nth-child(4) {
+					display: block;
+					bottom: 2px;
+					transform: rotate(-45deg);
+				}
+			}
+			@include pc {
+				display: none;
+			}
+		}
+	}
+	#mobilemenu {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		padding: 25px 10px;
+		padding-top: 90px;
+		background: rgba(17, 17, 17, 0.932);
+		li a {
+			display: block;
+			color: #ddd;
+			font-size: 22px;
+			padding: 13px 25px;
+			letter-spacing: 1px;
+			border-bottom: 1px solid #222;
+			@include texthover;
+		}
+	}
+}
+#intro {
+	height: 85vh;
+	@include flex;
+	padding: 30px;
+	min-height: 620px;
+	padding-top: 50px;
+	background: linear-gradient(
+			rgba(2, 0, 19, 0.7),
+			rgba(19, 23, 58, 0.75),
+			rgba(2, 0, 19, 0.7)
+		),
+		url(../images/bg.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+	background-position-y: center;
+}
+.intro-text {
+	flex: 1;
+	h3 {
+		font-size: 50px;
+		color: #fff;
+	}
+	#options {
+		color: $primaryColor;
+		padding: 10px;
+		padding-top: 0;
+		font-size: 27px;
+	}
+	.contactBtn {
+		color: #fff;
+		margin: 10px 0;
+		font-size: 24px;
+		letter-spacing: 2px;
+		padding: 10px 55px;
+		background: $primaryColor;
+		@include bghover;
+	}
+	.social-menu {
+		bottom: 10px;
+		padding: 10px 0;
+		position: absolute;
+		a .fa {
+			@include texthover;
+		}
+	}
+}
+.intro-image {
+	flex: 1;
+	max-width: 500px;
+	min-width: 400px;
+	display: none;
+	@include pc {
+		display: block;
+	}
+}
+
+// MAIN
+main section {
+	padding: 20px 12px;
+	.heading {
+		font-size: 22px;
+		text-align: left;
+		text-transform: uppercase;
+		@include heading;
+	}
+	.content .image {
+		max-width: 500px;
+		margin: 15px auto;
+	}
+}
+#about {
+	.content {
+		@include pc {
+			@include flex;
+			.image {
+				flex: 1;
+				min-width: 300px;
+				margin: 30px;
+			}
+			p {
+				flex: 2;
+			}
+		}
+	}
+}
+#services {
+	.content .articles {
+		@include gridcontent(320px, 380px);
+		justify-content: space-evenly;
+	}
+	.articles article {
+		height: 300px;
+		margin: 20px;
+		@include grid(1fr);
+		border-radius: 5px;
+		padding: 5px 15px;
+		box-shadow: 1px 1px 8px #ddd;
+		transition: 0.6s;
+		&:hover {
+			transform: scale(1.05);
+			box-shadow: 3px 3px 20px #ddd;
+		}
+		& > div > div {
+			@include flex(left);
+			padding: 6px 0;
+			.fa {
+				font-size: 36px;
+				padding: 5px 15px;
+				color: $primaryColor;
+			}
+		}
+	}
+}
+#projects {
+	.content {
+		@include gridcontent(260px, 480px);
+		justify-content: space-evenly;
+		.work {
+			padding: 10px;
+			@include grid(1fr);
+			h4 {
+				position: absolute;
+				margin: auto;
+				padding: 10px;
+				text-align: center;
+				font: {
+					size: 30px;
+					weight: bold;
+				}
+			}
+		}
+	}
+}
+#contact {
+	.content {
+		margin-top: 25px;
+		@include bigscreen {
+			@include flex(space-around);
+		}
+	}
+	&-form {
+		margin: auto;
+		@include formstyle;
+	}
+	&-info {
+		margin: auto;
+		& > div {
+			padding: 5px;
+			margin-top: 20px;
+			text-align: center;
+			.fa {
+				font-size: 50px;
+				color: $primaryColor;
+			}
+		}
+	}
+}
+
+// FOOTER
+footer {
+	padding-top: 25px;
+	background: #313030;
+	#backtoTop {
+		@include backtoTop;
+	}
+	.social-menu {
+		padding-left: 20px;
+		.fa {
+			@include texthover;
+		}
+	}
+	.explore {
+		padding: 30px;
+		padding-left: 20px;
+		.title {
+			color: #fff;
+			padding: 5px;
+		}
+		li {
+			margin: 8px 0;
+			a {
+				color: #eee;
+				font-size: 20px;
+				padding: 10px;
+			}
+		}
+	}
+	#copyright {
+		padding: 5px;
+		text-align: center;
+		background: #1c1c1d;
+		p {
+			color: #eee;
+		}
+	}
+}
+
+// MEDIA QUERIES
+@media (max-width: 480px) {
+	body {
+		font-size: 120%;
+	}
+	#intro {
+		padding: 20px;
+		.intro-text h3 {
+			font-size: 55px;
+		}
+	}
+}
+@media (min-width: 480px) {
+	body {
+		font-size: 120%;
+	}
+	.intro-text h3 {
+		font-size: 60px;
+	}
+}
+@media (min-width: 680px) {
+	body {
+		font-size: 125%;
+	}
+	#intro {
+		height: 75vh;
+	}
+	.intro-text .social-menu {
+		right: 30px;
+	}
+}
+@media (min-width: 960px) {
+	body {
+		font-size: 130%;
+	}
+	#intro {
+		max-height: 920px;
+	}
+}
+@media (min-width: 1120px) {
+	body {
+		font-size: 130%;
+	}
+	main section,
+	footer .content {
+		max-width: 1200px;
+		margin: auto;
+	}
+}
